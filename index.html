@@ -74,10 +74,6 @@
         .search-box { position: relative; }
         .search-box input { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px 10px 40px; width: 280px; color: var(--text-primary); font-size: 13px; font-family: inherit; }
         .search-box::before { content: '🔍'; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 14px; }
-        .avatar-group { display: flex; align-items: center; }
-        .avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--gradient-1); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; border: 2px solid var(--bg-dark); margin-left: -8px; }
-        .avatar:first-child { margin-left: 0; }
-        .avatar-more { background: var(--bg-card); color: var(--text-secondary); }
         .board-view { flex: 1; overflow-x: auto; overflow-y: hidden; padding: 24px; }
         .board { display: flex; gap: 20px; height: 100%; min-width: fit-content; }
         .column { width: 320px; min-width: 320px; background: var(--bg-card); border-radius: 16px; display: flex; flex-direction: column; max-height: 100%; border: 1px solid var(--border); }
@@ -115,13 +111,34 @@
         .task-footer { display: flex; justify-content: space-between; align-items: center; }
         .task-meta { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--text-muted); }
         .task-meta-item { display: flex; align-items: center; gap: 4px; }
-        .task-assignees { display: flex; align-items: center; }
-        .task-assignees .avatar { width: 24px; height: 24px; font-size: 10px; }
         .add-task-btn { width: 100%; padding: 12px; border: 2px dashed var(--border); background: transparent; border-radius: 10px; color: var(--text-muted); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .add-task-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.05); }
         .view-toggle { display: flex; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 4px; }
         .view-btn { padding: 8px 16px; border: none; background: transparent; color: var(--text-muted); font-size: 13px; font-weight: 600; cursor: pointer; border-radius: 8px; }
         .view-btn.active { background: var(--primary); color: white; }
+        .content-view { flex: 1; overflow-y: auto; padding: 24px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+        .calendar-day { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; min-height: 120px; }
+        .calendar-day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .calendar-date { font-weight: 700; font-size: 14px; }
+        .calendar-event { background: var(--gradient-1); color: white; padding: 4px 8px; border-radius: 6px; font-size: 11px; margin-top: 4px; cursor: pointer; }
+        .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+        .resource-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: all 0.2s; }
+        .resource-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+        .resource-icon { font-size: 32px; margin-bottom: 12px; }
+        .resource-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+        .resource-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+        .resource-link { color: var(--primary); font-size: 13px; font-weight: 600; text-decoration: none; }
+        .tool-app { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; max-width: 800px; margin: 0 auto; }
+        .tool-header { text-align: center; margin-bottom: 24px; }
+        .tool-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .tool-desc { color: var(--text-secondary); }
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text-secondary); }
+        .form-input, .form-textarea, .form-select { width: 100%; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; color: var(--text-primary); font-size: 14px; font-family: inherit; }
+        .form-textarea { min-height: 100px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .output-box { background: var(--bg-dark); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-top: 16px; min-height: 100px; white-space: pre-wrap; }
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; width: 90%; max-width: 600px; max-height: 90vh; overflow: hidden; }
@@ -130,11 +147,6 @@
         .modal-close { width: 36px; height: 36px; border: none; background: var(--bg-hover); border-radius: 10px; cursor: pointer; font-size: 18px; color: var(--text-muted); }
         .modal-close:hover { background: var(--danger); color: white; }
         .modal-body { padding: 24px; overflow-y: auto; max-height: calc(90vh - 200px); }
-        .form-group { margin-bottom: 20px; }
-        .form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text-secondary); }
-        .form-input, .form-textarea, .form-select { width: 100%; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; color: var(--text-primary); font-size: 14px; font-family: inherit; }
-        .form-textarea { min-height: 100px; resize: vertical; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .modal-footer { padding: 20px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 12px; }
         .toast { position: fixed; bottom: 24px; right: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-glow); transform: translateY(100px); opacity: 0; transition: all 0.3s ease; z-index: 2000; }
         .toast.show { transform: translateY(0); opacity: 1; }
@@ -145,6 +157,7 @@
         ::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 3px; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .task-card { animation: slideIn 0.3s ease; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
@@ -172,36 +185,101 @@
         <aside class="sidebar">
             <div class="nav-section">
                 <div class="nav-title">Workspace</div>
-                <div class="nav-item active"><span class="nav-icon">📋</span><span>Board</span></div>
-                <div class="nav-item"><span class="nav-icon">📅</span><span>Timeline</span></div>
-                <div class="nav-item"><span class="nav-icon">📊</span><span>Dashboard</span></div>
-                <div class="nav-item"><span class="nav-icon">📁</span><span>Resources</span></div>
+                <div class="nav-item active" onclick="showView('board')" data-view="board"><span class="nav-icon">📋</span><span>Board</span></div>
+                <div class="nav-item" onclick="showView('calendar')" data-view="calendar"><span class="nav-icon">📅</span><span>Calendar</span></div>
+                <div class="nav-item" onclick="showView('resources')" data-view="resources"><span class="nav-icon">📁</span><span>Resources</span></div>
+                <div class="nav-item" onclick="showView('tools')" data-view="tools"><span class="nav-icon">🛠️</span><span>Tools</span></div>
             </div>
             <div class="ai-widget">
                 <div class="ai-header">
                     <div class="ai-avatar">🤖</div>
                     <div><div class="ai-title">Nexus AI</div><div class="ai-subtitle">Project Assistant</div></div>
                 </div>
-                <div class="ai-suggestion" onclick="showAIHelp()">💡 Click for YouTube channel tips!</div>
+                <div class="ai-suggestion" onclick="showAIHelp()">💡 Click for YouTube tips!</div>
             </div>
         </aside>
 
         <main class="main-content">
-            <div class="toolbar">
-                <div class="toolbar-left">
-                    <h1 class="project-title" id="projectTitle">Select a Project</h1>
-                    <div class="project-meta" id="projectMeta"></div>
-                </div>
-                <div class="toolbar-right">
-                    <div class="view-toggle">
-                        <button class="view-btn active">Board</button>
-                        <button class="view-btn">List</button>
+            <!-- Board View -->
+            <div id="boardView">
+                <div class="toolbar">
+                    <div class="toolbar-left">
+                        <h1 class="project-title" id="projectTitle">Select a Project</h1>
+                        <div class="project-meta" id="projectMeta"></div>
                     </div>
+                    <div class="toolbar-right">
+                        <div class="view-toggle">
+                            <button class="view-btn active">Board</button>
+                            <button class="view-btn">List</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-view"><div class="board" id="board"></div></div>
+            </div>
+
+            <!-- Calendar View -->
+            <div id="calendarView" class="content-view hidden">
+                <div class="toolbar">
+                    <div class="toolbar-left"><h1 class="project-title">📅 Content Calendar</h1></div>
+                </div>
+                <div style="padding: 0 24px 24px;">
+                    <div class="calendar-grid" id="calendarGrid"></div>
                 </div>
             </div>
 
-            <div class="board-view">
-                <div class="board" id="board"></div>
+            <!-- Resources View -->
+            <div id="resourcesView" class="content-view hidden">
+                <div class="toolbar">
+                    <div class="toolbar-left"><h1 class="project-title">📁 Resources & Tools</h1></div>
+                </div>
+                <div style="padding: 0 24px 24px;">
+                    <div class="resources-grid" id="resourcesGrid"></div>
+                </div>
+            </div>
+
+            <!-- Tools View -->
+            <div id="toolsView" class="content-view hidden">
+                <div class="toolbar">
+                    <div class="toolbar-left"><h1 class="project-title">🛠️ LinkedIn Post Generator</h1></div>
+                </div>
+                <div style="padding: 0 24px 24px;">
+                    <div class="tool-app">
+                        <div class="tool-header">
+                            <div class="tool-title">🚀 LinkedIn Post Generator</div>
+                            <div class="tool-desc">Create engaging LinkedIn posts with AI-powered templates</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Topic / Main Idea</label>
+                            <input type="text" class="form-input" id="liTopic" placeholder="e.g., Building my first SaaS">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Tone</label>
+                                <select class="form-select" id="liTone">
+                                    <option value="professional">Professional</option>
+                                    <option value="casual">Casual</option>
+                                    <option value="inspiring">Inspiring</option>
+                                    <option value="humorous">Humorous</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Post Type</label>
+                                <select class="form-select" id="liType">
+                                    <option value="story">Story</option>
+                                    <option value="tips">Tips/Advice</option>
+                                    <option value="milestone">Milestone</option>
+                                    <option value="question">Question</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="generateLinkedInPost()" style="width: 100%;">✨ Generate Post</button>
+                        <div class="output-box" id="liOutput" style="display: none;"></div>
+                        <div style="display: flex; gap: 8px; margin-top: 12px;" id="liActions" style="display: none;">
+                            <button class="btn btn-secondary" onclick="copyToClipboard()">📋 Copy</button>
+                            <button class="btn btn-secondary" onclick="regeneratePost()">🔄 Regenerate</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -264,9 +342,10 @@
         // Data Store
         let projects = JSON.parse(localStorage.getItem('nexusflow_projects')) || {};
         let currentProject = localStorage.getItem('nexusflow_current') || null;
+        let currentView = localStorage.getItem('nexusflow_view') || 'board';
 
-        // Initialize YouTube Channel Project if not exists
-        function initializeYouTubeProject() {
+        // Initialize YouTube Projects
+        function initializeProjects() {
             if (!projects['youtube-channel']) {
                 projects['youtube-channel'] = {
                     id: 'youtube-channel',
@@ -277,43 +356,96 @@
                             title: 'To Do',
                             color: 'todo',
                             tasks: [
-                                { id: 't1', title: 'Research top LinkedIn post formats', priority: 'high', tags: ['research','content'], desc: 'Analyze viral LinkedIn posts in tech niche. Document hooks, structure, CTAs.', time: '2h' },
-                                { id: 't2', title: 'Write script: Hook + Demo + CTA', priority: 'high', tags: ['script','content'], desc: 'Create engaging script structure. Hook in first 5 seconds, clear demo, strong call-to-action.', time: '3h' },
-                                { id: 't3', title: 'Set up dev environment for recording', priority: 'medium', tags: ['dev','setup'], desc: 'Prepare IDE, browser, terminal for clean screen recording. Test audio levels.', time: '1h' },
-                                { id: 't4', title: 'Build LinkedIn Post Generator app', priority: 'high', tags: ['dev','build'], desc: 'Create working React/Next.js app using Claude API. Test before recording.', time: '4h' },
-                                { id: 't5', title: 'Record voiceover separately', priority: 'medium', tags: ['video','audio'], desc: 'Use quality mic. Record in quiet space. Multiple takes if needed.', time: '2h' },
-                                { id: 't6', title: 'Edit video: Cut pauses, add zooms', priority: 'high', tags: ['video','edit'], desc: 'Use DaVinci Resolve or CapCut. Remove dead air. Add zoom on key moments.', time: '4h' },
-                                { id: 't7', title: 'Create thumbnail (1280x720)', priority: 'high', tags: ['design','thumbnail'], desc: 'High contrast, face visible, bold text. Test at small size.', time: '2h' },
-                                { id: 't8', title: 'Write SEO-optimized description', priority: 'medium', tags: ['seo','marketing'], desc: 'Include keywords: AI tools, LinkedIn automation, tutorial. Add timestamps.', time: '1h' },
-                                { id: 't9', title: 'Schedule premiere on YouTube', priority: 'medium', tags: ['publish','marketing'], desc: 'Schedule for optimal time (Tuesday/Thursday 9 AM EST). Set up premiere.', time: '30m' },
-                                { id: 't10', title: 'Create Twitter/X thread recap', priority: 'medium', tags: ['marketing','social'], desc: 'Break down key points into 5-7 tweet thread. Post with video link.', time: '1h' }
+                                { id: 't1', title: 'Research top LinkedIn post formats', priority: 'high', tags: ['research','content'], desc: 'Analyze viral LinkedIn posts in tech niche. Document hooks, structure, CTAs.', time: '2h', dueDate: '2026-02-03' },
+                                { id: 't2', title: 'Write script: Hook + Demo + CTA', priority: 'high', tags: ['script','content'], desc: 'Create engaging script structure. Hook in first 5 seconds, clear demo, strong call-to-action.', time: '3h', dueDate: '2026-02-04' },
+                                { id: 't3', title: 'Set up dev environment for recording', priority: 'medium', tags: ['dev','setup'], desc: 'Prepare IDE, browser, terminal for clean screen recording. Test audio levels.', time: '1h', dueDate: '2026-02-05' },
+                                { id: 't4', title: 'Build LinkedIn Post Generator app', priority: 'high', tags: ['dev','build'], desc: 'Create working React/Next.js app using Claude API. Test before recording.', time: '4h', dueDate: '2026-02-06' },
+                                { id: 't5', title: 'Record voiceover separately', priority: 'medium', tags: ['video','audio'], desc: 'Use quality mic. Record in quiet space. Multiple takes if needed.', time: '2h', dueDate: '2026-02-07' },
+                                { id: 't6', title: 'Edit video: Cut pauses, add zooms', priority: 'high', tags: ['video','edit'], desc: 'Use DaVinci Resolve or CapCut. Remove dead air. Add zoom on key moments.', time: '4h', dueDate: '2026-02-08' },
+                                { id: 't7', title: 'Create thumbnail (1280x720)', priority: 'high', tags: ['design','thumbnail'], desc: 'High contrast, face visible, bold text. Test at small size.', time: '2h', dueDate: '2026-02-09' },
+                                { id: 't8', title: 'Write SEO-optimized description', priority: 'medium', tags: ['seo','marketing'], desc: 'Include keywords: AI tools, LinkedIn automation, tutorial. Add timestamps.', time: '1h', dueDate: '2026-02-09' },
+                                { id: 't9', title: 'Schedule premiere on YouTube', priority: 'medium', tags: ['publish','marketing'], desc: 'Schedule for optimal time (Tuesday/Thursday 9 AM EST). Set up premiere.', time: '30m', dueDate: '2026-02-10' },
+                                { id: 't10', title: 'Create Twitter/X thread recap', priority: 'medium', tags: ['marketing','social'], desc: 'Break down key points into 5-7 tweet thread. Post with video link.', time: '1h', dueDate: '2026-02-11' }
                             ]
                         },
-                        progress: {
-                            title: 'In Progress',
-                            color: 'progress',
-                            tasks: []
-                        },
-                        review: {
-                            title: 'Review',
-                            color: 'review',
-                            tasks: []
-                        },
-                        done: {
-                            title: 'Done',
-                            color: 'done',
-                            tasks: []
-                        }
+                        progress: { title: 'In Progress', color: 'progress', tasks: [] },
+                        review: { title: 'Review', color: 'review', tasks: [] },
+                        done: { title: 'Done', color: 'done', tasks: [] }
                     }
                 };
-                saveData();
             }
+            
+            if (!projects['video-2']) {
+                projects['video-2'] = {
+                    id: 'video-2',
+                    name: '🎬 Video #2 - AI Writing Tools Comparison',
+                    description: 'Compare top AI writing assistants',
+                    columns: {
+                        todo: {
+                            title: 'To Do',
+                            color: 'todo',
+                            tasks: [
+                                { id: 'v2-1', title: 'Research: Claude vs ChatGPT vs Gemini', priority: 'high', tags: ['research'], desc: 'Test each tool with same prompts. Document strengths/weaknesses.', time: '3h' },
+                                { id: 'v2-2', title: 'Create comparison framework', priority: 'high', tags: ['content'], desc: 'Define criteria: speed, quality, price, use cases.', time: '1h' },
+                                { id: 'v2-3', title: 'Record side-by-side demo', priority: 'high', tags: ['video'], desc: 'Screen record all three tools simultaneously.', time: '2h' },
+                                { id: 'v2-4', title: 'Edit split-screen video', priority: 'medium', tags: ['video','edit'], desc: 'Show all three outputs at once for easy comparison.', time: '3h' }
+                            ]
+                        },
+                        progress: { title: 'In Progress', color: 'progress', tasks: [] },
+                        review: { title: 'Review', color: 'review', tasks: [] },
+                        done: { title: 'Done', color: 'done', tasks: [] }
+                    }
+                };
+            }
+            
+            if (!projects['video-3']) {
+                projects['video-3'] = {
+                    id: 'video-3',
+                    name: '🎬 Video #3 - Build SaaS in 48 Hours',
+                    description: 'Weekend project: Complete SaaS build',
+                    columns: {
+                        todo: {
+                            title: 'To Do',
+                            color: 'todo',
+                            tasks: [
+                                { id: 'v3-1', title: 'Choose SaaS idea', priority: 'high', tags: ['planning'], desc: 'Pick simple but useful tool. Validate with Twitter poll.', time: '1h' },
+                                { id: 'v3-2', title: 'Day 1: Setup + Auth + Database', priority: 'high', tags: ['dev'], desc: 'Use Next.js + Clerk + Supabase. Record everything.', time: '8h' },
+                                { id: 'v3-3', title: 'Day 2: Core features + Stripe', priority: 'high', tags: ['dev'], desc: 'Build main functionality. Add payments. Deploy.', time: '8h' },
+                                { id: 'v3-4', title: 'Edit timelapse video', priority: 'medium', tags: ['video','edit'], desc: 'Speed up boring parts. Keep interesting moments real-time.', time: '4h' }
+                            ]
+                        },
+                        progress: { title: 'In Progress', color: 'progress', tasks: [] },
+                        review: { title: 'Review', color: 'review', tasks: [] },
+                        done: { title: 'Done', color: 'done', tasks: [] }
+                    }
+                };
+            }
+            
+            saveData();
         }
 
         // Save to localStorage
         function saveData() {
             localStorage.setItem('nexusflow_projects', JSON.stringify(projects));
             localStorage.setItem('nexusflow_current', currentProject);
+            localStorage.setItem('nexusflow_view', currentView);
+        }
+
+        // View Switching
+        function showView(view) {
+            currentView = view;
+            saveData();
+            
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelector(`[data-view="${view}"]`).classList.add('active');
+            
+            ['boardView', 'calendarView', 'resourcesView', 'toolsView'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(view + 'View').classList.remove('hidden');
+            
+            if (view === 'calendar') renderCalendar();
+            if (view === 'resources') renderResources();
         }
 
         // Render Project Selector
@@ -386,6 +518,7 @@
             const priorityClass = `priority-${task.priority}`;
             const priorityLabel = task.priority === 'high' ? '🔴 High' : task.priority === 'medium' ? '🟡 Medium' : '🟢 Low';
             const tagsHtml = task.tags.map(tag => `<span class="tag ${tag}">${tag}</span>`).join('');
+            const dueDate = task.dueDate ? `<span class="task-meta-item">📅 ${task.dueDate.slice(5)}</span>` : '';
             return `
                 <div class="task-card" draggable="true" data-task-id="${task.id}">
                     <span class="task-priority ${priorityClass}">${priorityLabel}</span>
@@ -393,12 +526,135 @@
                     ${tagsHtml ? `<div class="task-tags">${tagsHtml}</div>` : ''}
                     <div class="task-footer">
                         <div class="task-meta">
-                            ${task.desc ? '<span class="task-meta-item">📝 Has notes</span>' : ''}
+                            ${task.desc ? '<span class="task-meta-item">📝</span>' : ''}
                             ${task.time ? `<span class="task-meta-item">⏱️ ${task.time}</span>` : ''}
+                            ${dueDate}
                         </div>
                     </div>
                 </div>
             `;
+        }
+
+        // Render Calendar
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const events = [
+                { date: 3, title: 'Research LinkedIn', color: 'var(--primary)' },
+                { date: 4, title: 'Write Script', color: 'var(--primary)' },
+                { date: 6, title: 'Build App', color: 'var(--warning)' },
+                { date: 7, title: 'Record Audio', color: 'var(--accent)' },
+                { date: 8, title: 'Edit Video', color: 'var(--secondary)' },
+                { date: 9, title: 'Thumbnail + SEO', color: 'var(--secondary)' },
+                { date: 10, title: '🎬 PUBLISH!', color: 'var(--success)' }
+            ];
+            
+            let html = days.map(d => `<div style="font-weight:700;font-size:12px;color:var(--text-muted);padding:8px;">${d}</div>`).join('');
+            
+            for (let i = 1; i <= 28; i++) {
+                const dayEvents = events.filter(e => e.date === i);
+                html += `
+                    <div class="calendar-day">
+                        <div class="calendar-day-header">
+                            <span class="calendar-date">${i}</span>
+                            ${i === 10 ? '<span style="font-size:10px;background:var(--success);color:white;padding:2px 6px;border-radius:10px;">LIVE</span>' : ''}
+                        </div>
+                        ${dayEvents.map(e => `<div class="calendar-event" style="background:${e.color};">${e.title}</div>`).join('')}
+                    </div>
+                `;
+            }
+            grid.innerHTML = html;
+        }
+
+        // Render Resources
+        function renderResources() {
+            const resources = [
+                { icon: '🎨', title: 'Thumbnail Tools', desc: 'Canva, Photoshop, Figma templates', links: ['canva.com', 'figma.com'] },
+                { icon: '🎬', title: 'Video Editing', desc: 'DaVinci Resolve, CapCut, Premiere', links: ['blackmagicdesign.com/davinciresolve', 'capcut.com'] },
+                { icon: '🎙️', title: 'Audio Equipment', desc: 'Blue Yeti, Rode NT-USB, Audio interfaces', links: ['bluedesigns.com', 'rode.com'] },
+                { icon: '📊', title: 'Analytics', desc: 'YouTube Studio, TubeBuddy, VidIQ', links: ['studio.youtube.com', 'tubebuddy.com'] },
+                { icon: '🎵', title: 'Music & SFX', desc: 'Epidemic Sound, Artlist, Uppbeat', links: ['epidemicsound.com', 'artlist.io'] },
+                { icon: '📝', title: 'Script Writing', desc: 'Notion, Google Docs, Jasper AI', links: ['notion.so', 'jasper.ai'] },
+                { icon: '🤖', title: 'AI Tools', desc: 'Claude, ChatGPT, Midjourney, Runway', links: ['claude.ai', 'chat.openai.com'] },
+                { icon: '📱', title: 'Social Scheduling', desc: 'Buffer, Hootsuite, Later', links: ['buffer.com', 'hootsuite.com'] },
+                { icon: '🎯', title: 'SEO Tools', desc: 'TubeBuddy, VidIQ, Keywords Everywhere', links: ['vidiq.com', 'keywordseverywhere.com'] },
+                { icon: '💡', title: 'Content Ideas', desc: 'AnswerThePublic, Exploding Topics', links: ['answerthepublic.com', 'explodingtopics.com'] }
+            ];
+            
+            document.getElementById('resourcesGrid').innerHTML = resources.map(r => `
+                <div class="resource-card">
+                    <div class="resource-icon">${r.icon}</div>
+                    <div class="resource-title">${r.title}</div>
+                    <div class="resource-desc">${r.desc}</div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                        ${r.links.map(l => `<a href="https://${l}" target="_blank" class="resource-link">${l} →</a>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // LinkedIn Post Generator
+        const postTemplates = {
+            story: [
+                "🚀 {topic}\n\nIt all started when I realized...\n\n{hook}\n\nHere's what I learned:\n✅ Lesson 1\n✅ Lesson 2\n✅ Lesson 3\n\nWhat's your experience with this?\n\n#Tech #AI #Entrepreneurship",
+                "3 years ago, I couldn't {topic}.\n\nToday, I've {achievement}.\n\nHere's my journey:\n\n{hook}\n\nThe secret? Consistency and learning from failures.\n\nWhat's stopping you from starting?\n\n#GrowthMindset #Tech"
+            ],
+            tips: [
+                "💡 5 Tips for {topic}:\n\n1️⃣ Start small, think big\n2️⃣ Iterate quickly\n3️⃣ Listen to feedback\n4️⃣ Focus on value\n5️⃣ Never stop learning\n\n{hook}\n\nWhich tip resonates most with you?\n\n#Tips #Tech #AI",
+                "🎯 The Ultimate Guide to {topic}\n\nAfter 100+ experiments, here's what works:\n\n{hook}\n\n🔹 Step 1: Research\n🔹 Step 2: Build\n🔹 Step 3: Ship\n🔹 Step 4: Iterate\n\nSave this for later! 📌\n\n#Tutorial #Guide"
+            ],
+            milestone: [
+                "🎉 Milestone Unlocked: {topic}\n\n{hook}\n\nThank you to everyone who's supported this journey!\n\nHere's what's next:\n🚀 Feature 1\n🚀 Feature 2\n🚀 Feature 3\n\nWhat would you like to see?\n\n#Milestone #Gratitude",
+                "📈 We just hit {topic}!\n\n{hook}\n\nCouldn't have done it without:\n• The amazing community\n• Early believers\n• Endless iterations\n\nOnward and upward! 🚀\n\n#Growth #Celebration"
+            ],
+            question: [
+                "🤔 Honest question:\n\n{topic}?\n\n{hook}\n\nI've been thinking about this a lot lately, and I'd love to hear your perspective.\n\nDrop your thoughts below 👇\n\n#Discussion #Tech",
+                "Poll: What's your biggest challenge with {topic}?\n\n{hook}\n\nA) Getting started\nB) Finding time\nC) Technical skills\nD) Marketing\n\nLet me know in the comments!\n\n#Poll #Question"
+            ]
+        };
+
+        function generateLinkedInPost() {
+            const topic = document.getElementById('liTopic').value || 'building AI tools';
+            const tone = document.getElementById('liTone').value;
+            const type = document.getElementById('liType').value;
+            
+            const templates = postTemplates[type];
+            const template = templates[Math.floor(Math.random() * templates.length)];
+            
+            const hooks = {
+                professional: "I discovered a framework that changed everything.",
+                casual: "Honestly? It was way easier than I expected.",
+                inspiring: "If I can do it, so can you. Here's why...",
+                humorous: "Spoiler alert: It involved a lot of coffee and Stack Overflow."
+            };
+            
+            const achievements = {
+                professional: "helped 100+ developers streamline their workflow",
+                casual: "built something people actually use",
+                inspiring: "turned my side project into a full-time passion",
+                humorous: "somehow convinced people to pay for my code"
+            };
+            
+            let post = template
+                .replace('{topic}', topic)
+                .replace('{hook}', hooks[tone])
+                .replace('{achievement}', achievements[tone]);
+            
+            document.getElementById('liOutput').style.display = 'block';
+            document.getElementById('liOutput').textContent = post;
+            document.getElementById('liActions').style.display = 'flex';
+            
+            showToast('Post Generated!', 'Your LinkedIn post is ready');
+        }
+
+        function copyToClipboard() {
+            const text = document.getElementById('liOutput').textContent;
+            navigator.clipboard.writeText(text);
+            showToast('Copied!', 'Post copied to clipboard');
+        }
+
+        function regeneratePost() {
+            generateLinkedInPost();
         }
 
         // Drag and Drop
@@ -438,7 +694,6 @@
             });
         }
 
-        // Move Task
         function moveTask(taskId, fromColumn, toColumn) {
             const project = projects[currentProject];
             const taskIndex = project.columns[fromColumn].tasks.findIndex(t => t.id === taskId);
@@ -449,7 +704,6 @@
             }
         }
 
-        // Update Column Counts
         function updateColumnCounts() {
             document.querySelectorAll('.column').forEach(col => {
                 const key = col.dataset.column;
@@ -472,7 +726,6 @@
             document.getElementById('taskTags').value = '';
         }
 
-        // Create Task
         function createTask() {
             const title = document.getElementById('taskTitle').value;
             if (!title) return;
@@ -494,7 +747,6 @@
             showToast('Task Created', title);
         }
 
-        // Toast
         function showToast(title, message) {
             document.getElementById('toastTitle').textContent = title;
             document.getElementById('toastMessage').textContent = message;
@@ -502,7 +754,6 @@
             setTimeout(() => document.getElementById('toast').classList.remove('show'), 3000);
         }
 
-        // Theme
         function toggleTheme() {
             const body = document.body;
             const current = body.getAttribute('data-theme');
@@ -513,7 +764,6 @@
             document.body.setAttribute('data-theme', 'light');
         }
 
-        // AI Help
         function showAIHelp() {
             const tips = [
                 "🎬 Post consistently: 2-3 videos per week",
@@ -527,11 +777,11 @@
         }
 
         // Initialize
-        initializeYouTubeProject();
+        initializeProjects();
         renderProjectSelector();
         renderBoard();
+        showView(currentView);
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') closeTaskModal();
             if (e.key === 'n' && e.ctrlKey) { e.preventDefault(); openTaskModal(); }
